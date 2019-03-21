@@ -1,0 +1,55 @@
+
+step 0: create maven prject with spring and hibernate dependency
+step 1 
+
+ xmlns:p="http://www.springframework.org/schema/p" 
+  
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:mem://sampleDb" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean> 
+
+<bean id="entityManagerFactory" 
+			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+			p:packagesToScan="com.cognizant.genc.sampleapp.model"
+            p:dataSource-ref="dataSource"
+			>
+<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+	</bean>
+
+<!-- Transactions -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+ <!-- enable the configuration of transactional behavior based on annotations -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+step:2 
+	@ManyToOne(fetch=FetchType.LAZY/*,cascade=CascadeType.ALL*/)
+	@JoinColumn(name="fk_address_id")
+	private Address address;
+
+step 3 : implement dao below 
+import org.apache.log4j.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+private static Logger log = Logger.getLogger(UserDaoImpl.class);
+
+	@PersistenceContext
+	private EntityManager em;
+
+
+step 4
+
+
+
+
