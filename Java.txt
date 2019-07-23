@@ -1,0 +1,1929 @@
+Java first invented by "Sun Micro System" now taken over by "Oracle"
+J2SE --- system/network oriented --- standard edition
+J2EE --- web oriented --- enterprise edition
+J2ME --- Mobile oriented --- micro edition
+
+1.platform independent
+2.Multithreading -- running different lines of code in single prg simultaneously using thread class
+3.client/server technology -- Socket prg
+	ServerSocket -- act as server
+	Socket -- act as client
+4.GUI -- Applet,Swing
+5.OOPS
+
+late 1980's -- oak
+early 1990's -- Java(James Gosling, Patrick Naughton, Chris Wirth)
+
+C -- Java
+1. structural oriented program -- OOPS
+2. header files -- packages(folder contains collection of class files)
+   #include <stdio.h> -- import java.io.*; (use necssary imports we need) 
+3. 32 keywords -- 49 keywords (no - sizeof,extern,register,signed,unsigned)
+4. primitive and user defined datatypes -- only primitive data types
+5. Macros (#define A 40) -- no global declaration
+6. pointers to access address -- by creating object we access address 
+
+C++ -- Java
+1. Object
+   class (blue print/template)
+   Encapsulation (wrapping of data into single unit - data hiding)
+   Abstraction (hiding the info from class)
+   Inheritance (accessing properties of one class  into another - code reusability)
+      single,multiple,multilevel,hybrid,hiearchial
+      No multiple inheritance instead we have interfaces --Java
+   Polymorphism (one class takes many forms)
+      Static/compile polymorphism (method/constructor/operator overloading)
+      Dynamic/runtime (method overriding)
+      No operator overloading -- Java
+2.Constructor
+   Constructor is a allocation of memory on obiect creation
+   Constructor is invoked on object creation
+   Some values can be assinged while object creation
+   All class will have one default constructor
+   Constructor can have parameters,access specifiers and cannot have retuen type
+3.Destructor 
+   Deallocation of memory (~)
+   No destructor -- Java
+      Automatic garbage collection
+      System.gc()/Runtime.gc() where it automatically calls
+         protected void finalize(){
+	    //contains the resourses to be deallocated and invoked only once in lifecycle of prg }
+4.String is datatype -- String is class/literal
+
+jdk
+1.0 -- oak
+2.0 -- playground
+3.0 -- kestrel
+4.0 -- merlin
+5.0 -- tiger
+6.0 -- mustang
+7.0 -- dolphin
+8.0 -- spyder
+
+path should be set first to run a java prg in environment variables
+   1.jdk path
+   2.bin path
+
+jdk,jre,jvm,jit
+
+Source code(a.java) --> Javac(compiler)(present inside JDK) --> Byte code(a.class) -- Java(interperter) --> JVM(contains JIT) <-->JRE
+
+JDK -- Java Decvelopement Kit -- contains JRE + extra tools to develop a java prg (compile)
+JVM -- Java Virtual Machine -- contains JIT -- used to read and excecute byte code,each os have separate jvm
+JIT -- Just In Time -- convert the byte code to machine code
+JRE -- Java Runtime Environment -- provides supporting library files to excecute prg (run)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Coding Sandards
+class -- starting letter of each woed should be capital
+method -- from second word onwards first letter should be capital
+variables -- everything should be small
+constants -- everything should be in capital
+Identifiers -- names given for classes, variables and methods
+Rule -- always should start with alphabets
+	2 special charaters _ and $
+	can contain numbers
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Keywords -- 49 keywords, goto and const are keywords of java but if we use we get compilation error 
+	    instead of goto use continue and for const use final
+	    3 reserved words true, false for boolean null for object
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Datatype -- primitive datatypes
+		byte	min	max
+	byte	1	-2^7	(2^7)-1
+	short	2	-2^15	(2^15)-1
+	int	4	-2^31	(2^31)-1
+	long	8	-2^63	(2^63)-1
+	float	4	expo	expo
+	double	8	expo	expo
+	char	2*	0	65535
+	boolean	1  no min max only two values "true" and "false"
+								*unsigned integer
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Literal -- how to store the value
+	Int Literal
+		Decimal Literal -- int a=33; int b=276437;
+		Octal Literal -- any number preceeded with 0 -- int a=01; 02, 03, 04, 05, 06, 07, 010, 011, 012,...
+		Hexadecimal Literal -- any number preceeded with 0x/0X -- int a=0x13; / 0X13;
+	Float Literal -- float a=3.14f / 3.14F; -- because by-default in java all decimal values are double
+	Double Literal -- double a=3.14; / 3.14d; / 3.14D;
+	Short Literal -- short a=10;
+	Long Literal -- long a=10; / 10l; / 10L;
+	Boolean Literan -- boolean a=true; / false;
+	Character Literal -- char a='c'; / 5(unsigned int); / (char)70000; / '\u0001'(unicode representation)
+	String Literal -- String s="hello";
+	Null Literal -- used only for class objects -- String s=null; / Sample s=null; / A a=null; / Thread t=null;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Variables -- identifiers store values in 2 types
+	Instance Variable or Class Variable -- any variable declared inside the class and outside the method
+				      	       no need to initialize it takes default values depending on datatype
+				 	       int, short, byte, long -- 0
+					       float, double -- 0.00
+					       boolean -- false
+					       object -- null
+					       char -- '\u0000'
+	Local Variable -- any variable declared inside method and compulsarly it should be initialized otherwise compilation error
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Access Specifiers/Access Modifiers
+	visibility 			 default	public		private		protected
+	same class same package		    Y		  Y		   Y		   Y			
+	different class same package	    Y		  Y		   N		   N		
+	(non sub class)
+	different class different package   N		  Y		   N		   Y
+	(sub class)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Operator
+	Arithmetic Operator --> +, -, *, /
+	Modulor Operator --> %
+	Relational --> >, <, >=, <=
+	Equality and Inequality Operator --> ==, !=
+	Assignment Operator --> =
+	Compound Assignment Operator --> += -= *= /=
+	Increment, Decrement Operator --> ++, --
+	Bitwise Operator --> &, |, ^, ~(1's complement), >> (right shift -- n/(2^s)), << (left shift -- n*(2^s))
+	Logical Operator --> &, |
+	Shortcircuit Logical Operator --> &&, ||
+	new Operator --> used to create an object
+			 A a=new A();  //contains memory reference
+			 A a; a=new A(); a.add(); //object declaration contains null reference
+			 new A().add()  //recommended only for class have one method
+	(.)Dot Operator --> Access methods and variables
+	instanceof Operator --> to check it 
+	Ternary Operator --> c=a>b?x:y;
+Type Conversion 
+	Implicit Conversion -- lower to higher datatype -- float a=3.14f; double d=a;
+	Explicit Conversion -- higher to lower datatype -- int a=128; byte b=(byte)a; //-128
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Excecution Control Statements in Java 
+	Conditional Statement -- if else, switch case, ternery operator
+		if(condition){
+			
+		}
+		else{
+		}
+		switch(exp)	//char,int,byte,short,enum,String(jdk1.7)
+		{
+			case args :	//args should be final
+				//stmt
+				break;
+			...
+			...
+			default :	//default can be used anywhere inside the switch
+				//stmt
+				break;
+		}	//do not use continue in switch 
+	Looping Statement -- for, while, dowhile
+	Flow Breaking Statement
+		break -- stops the entire iteration
+			Labeled Break 
+			Unlabeled Break
+		continue -- stops the current iteration
+			Labeled Continue
+			Unlabeled Continue
+		return -- transfer the control back to the calling prg
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Array Declaration
+	1 Dimensional Array
+		int a[]={1,2,3,4};
+		int a[]; a[0]=1; a[1]=2; a[2]=3;
+		int a[]=new int[4];
+		int[] a=new int[4];
+		int a[]=new int[4]; a[0]=1; a[1]=2; a[2]=3; a[3]=4;
+		int a[]=new int[]{1,2,3,4};	//Anonmyous array array size should not be given in anonmyous array
+		int a[]=new int[-4];	//we can declare an array with size of negative value if we run it throws NegativeSizeException
+		int a[]={1,2,3,4};
+			for(int i=0;i<a.length;i++)
+				sop(a[i]);
+			for(int a1:a)	//for each stmt from jdk1.5 used only for printing
+				sop(a1);
+		1.variable should be declared only inside for loop of same datatype
+		2.1D stored in a variable, 2D stored in 1D ans so on
+		double a[]={1.2,3.4,5.6};
+			for(double d1:d)
+				sop(d1);
+	2 Dimensional Array
+		int a[][]={{1,2},{3,4}};
+		int a[][]=new int[5][5];
+		int[][] a=new int[5][5];
+		int[] a[]=new int[5][5];
+		int a[][]=new int[5][];		//Arrays of array to avoid wastage of memory and only row size should be given
+			a[0]=new int[2];	
+			a[1]=new int[1];
+			a[0][0]=1; a[0][1]=2; a[0][2]=3;
+		int a[][]={{1,2},{3,4}};
+			for(int a1:a)		//2D in 1D
+				sop(a1[0]);	//1,3
+				sop(a1[1]);	//2,4
+			for(int a2:a1)		//1D in variable
+				sop(a2);	//1,2,3,4
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+String
+	String is a immutable class where we cannot increase or decrease the size
+	Constructor 
+		String();
+		String(String s);
+		String(byte[] b,int start,int end);
+			byte b[]={65,66,67,68,69};
+			String s=new String(b,2,3);
+			sop(s1);	//CD -- since byte takes the integer as ascii value
+		String(char[] c,int start,int end);
+		String(byte[] b);
+		String(char[] c);
+			char c[]={'j','a','v','a'};
+			String s=new String(c);
+			sop(s);		//java
+	Methods
+		String toString -- to get the value of the object avoid from getting address reference
+		Char charAt(int loc) -- return a single character from string
+		void getChars(int start,int end,char[] buf,int targetstart) -- return a froup of character from a string
+		byte[] getBytes() -- string to byte array
+		char[] toCharArray() -- string to char array
+		boolean startsWith(String) -- check the string starts with the given string
+		boolean endsWith(String) -- check the string ends with the given string
+		int length() -- to find the length of string
+		boolean equals(String s) -- checks the equality of the content by considering the case
+		boolean equalaIgnoreCase(String s) -- checks the equality of the content without considering the case
+		==(equals versus) -- checks the equality of the object reference
+		String substring(int start) -- gives a string from start position of given string
+		String substring(int start,int end) -- gives a string from start to end-1 position of given string
+		int compareTo(String s) -- compare 2 strings and sorts it by considering its case
+		int compareToIgnoreCase(String s) -- compare 2 strings and sorts it without considering its case 
+		int indexOf(char c) -- gives the first occurance of character in the string
+		int lastIndexOf(char c) -- gives the last occurance of character in the string
+		int indexOf(String s) -- gives the first occurance of string in the string
+		int lastIndexOf(String s) -- gives the first occurance of string in the string
+		int indexOf(String s,int i) -- gives the first occurance of string in the string after the given position
+		int lastIndexOf(String s,int i) -- gives the first occurance of string in the string before the given position
+		String toUpperCase() -- converts the string to uppercase
+		String toLowerCase() -- converts the string to lowercase
+		String trim() -- used to trim the spaces present front and back of the string
+		String concat(String s) -- used to join two strings
+		String replace(char ori,char replace) -- to replace the character
+		String[] split(String delimiter) -- splits the string to array of string where ever the given delimiter(delimiters - " ", special characters - "// ", String - "pain|gain|(it is a)") is present 
+		static String format(String formatSpecifier,String value) -- formats the given value to specified format(+ pad space before value, - pad space before value, 0 pad zeros, w width, c conversion, p precision)
+		boolean regionMatches(boolean ignorecase,int start,String value,int targetstart,int howmany) -- where it matches a part of a string
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.pack;	//package declaration
+
+import java.util.*;	//import packages
+
+class A{
+	String s;	//instance variable
+	A(String s1){	//parameterized constructor
+ 		s=s1;
+	}
+	public String toString(){
+		return s;
+	}
+}
+
+public class StringMethods{	//class declaration
+	public static void main(String[] args){
+		A a1=new A("hello");
+		System.out.println(a1);		//hello -- if you invoke the constructor the object automatically calls toString method if available	
+		String s2="hello";
+		System.out.println(s2.charAt(2));	//l -- character at index 2
+		String s1="this is a java code";
+		int start=5;
+		int end=10;
+		char buff[]=new char[end-start];
+		s1.getChars(start,end,buff,0);		
+		System.out.println(buff);	//is a  -- characters from index 5 to 10 stored in character array named buff
+		byte b[]=s2.getBytes();
+		for(byte b1:b){
+			System.out.println(b1);		//104 101 108 108 111 -- characters in string s2 is converted into byte array(ascii values) in separate lines
+		}
+		char c[]=s2.toCharArray();
+		for(char c1:c){
+			System.out.println(c1);		//h e l l o -- characters in string s2 is converted into character array in separate lines
+		}
+		System.out.println("foobar".startsWith("foo"));		//true -- given string starts with "foo"
+		System.out.println("foobar".startsWith("bar"));		//false -- given string dosen't starts with "bar"
+		System.out.println("foobar".endsWith("foo"));		//false -- given string dosen't ends with "foo"
+		System.out.println("foobar".endsWith("bar"));		//true -- given string ends with "bar"
+		System.out.println(s2.length());		//5 -- length of string s2
+		String s3=new String("hello");		
+		System.out.println(s2.equals(s3));		//true -- s2 and s3 are same case sensitive
+		System.out.println(s2.equalsIgnoreCase(s3));		//true -- s2  and s3 are same ignore case	
+		System.out.println(s2==s3);		//false -- object reference of s2 and s3 are different
+		String s4=s3;
+		System.out.println(s3==s4);		//true -- same object reference for s2 and s3
+		String s5="hello world";	
+		String s6="hello world";
+		System.out.println(s5.equals(s6));	//true -- s5and s6are same case sensitive	
+		System.out.println(s5==s6);		//true -- s5 and s6 strings don't have object so it acts as normal equals method
+		System.out.println(s5.substring(2));		//llo world -- substring of s5 from index 2 till end
+		System.out.println(s5.substring(2,7));		//llo w -- substring of s5 from index 2 till index 7
+		System.out.println(s5.compareTo(s6));		//0 -- s5 and s6 are equal
+		String s7="hello worle";
+		System.out.println(s5.compareTo(s7));		//-1 -- s5's ascii value is lesser than s7's ascii value
+		String s8="good";
+		System.out.println(s5.compareTo(s8));		//1 -- s5's ascii value is greater than s8's ascii value
+		String s9="the class is good and co-workers are the best companions";
+		System.out.println(s9.indexOf('s'));		//7 -- 's' occures first in index 7 of s9
+		System.out.println(s9.lastIndexOf('s'));	//55 -- 's' occures last in index 55 of s9
+		System.out.println(s9.indexOf("the"));		//0 -- "the" occurs first in index 0 of s9
+		System.out.println(s9.lastIndexOf("the"));	//37 -- "the" occurs last in index 37 of s9
+		System.out.println(s9.indexOf("the",5));	//37 -- "the" occurs first in index 37 of s9 after index 5 of s9
+		System.out.println(s9.lastIndexOf("the",40));	//37 -- "the" occurs last in index 37 of s9 before index 40 of s9	
+		System.out.println(s8.toUpperCase());		//GOOD -- lowercase in s8 is converted into uppercase
+		String s11="BAD";
+		System.out.println(s11.toLowerCase());		//bad -- uppercase in s11 is converted into lowercase
+		String s10=" boys are back ";
+		System.out.println(s10.length());		//15 -- length of s10
+		System.out.println(s10.trim().length());	//13 -- after removing white spaces in string length of s10
+		System.out.println(s10.length());		//15 -- length of s10 
+		System.out.println(s2.concat("world"));		//helloworld -- s2 and "world" are joined
+		System.out.println(s2.length());		//5 -- length of s2
+		System.out.println(s2.replace('e','i'));	//hillo -- 'e' is replaced by 'i' in s2
+		System.out.println(s2);				//hello -- s2
+		String s12="hello-world-is-excecuted";
+		String[] s13=s12.split("-");
+		for(String s14:s13){
+			System.out.println(s14);		//hello world is excecuted -- s12 is splited on basis of '-' and stored in a string array
+		}
+		String s15="hello.world.is.excecuted";
+		String[] s16=s15.split("\\.");
+		for(String s17:s16){
+			System.out.println(s17);		//hello world is excecuted -- s15 is splited on basis of '.' and stored in a string array
+		}
+		String s18="hello*world*is*excecuted";
+		String[] s19=s18.split("\\*");
+		for(String s20:s19){
+			System.out.println(s20);		//hello world is excecuted -- s18 is splited on basis of '*' and stored in a string array
+		}
+		String s21="No pain, No gain. It is a proverb";
+		String[] s22=s21.split("pain|gain|(It is a)");
+		for(String s23:s22){
+			System.out.println(s23);		//No |, No |. | proverb -- s21 is splited where the given delimiter strings are present 
+		}
+		System.out.println(String.format("|%5d|",4));		//|    4| -- four spaces before(+) 4(total size 5) is printed
+		System.out.println(String.format("|%-5d|",4));		//|4    | -- four spaces after(-) 4(total size 5) is printed
+		System.out.println(String.format("|%05d|",4));		//|00004| -- four zeros before(+) 4(total size 5) is printed
+		//System.out.println(String.format("|%-05d|",4));		// throws IllegalFormatFlagException
+		System.out.println(String.format("|%5s|","hello world"));		//|hello world| -- since the size of string is larger than the specified value the complete string is printed
+		System.out.println(String.format("|%15s|","hello world"));		//|    hello world| -- 4 spaces before(+) string(total size 15) is printed
+		System.out.println(String.format("|%-15s|","hello world"));		//|hello world    | -- 4 spaces after(-) string(total size 15) is printed
+		System.out.println(String.format("|%5.2f|",456123.4567));		//|456123.46| -- after . only 2 decimal values are taken
+		String s24="ABC Windows Test";	
+		System.out.println(s24.regionMatches(true,4,"windows",0,7));		//true -- string "windows" is present in s24 with given constraints 
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Wrapper Classes
+	The class that supports the primitive datatype to perform operation on that data type.
+	All wrapper classes are alse immutable.
+	Each datatype has a separate class.
+		int -- Integer
+		byte -- Byte
+		char -- Character
+		float -- Float
+		double -- Double
+		boolean -- Boolean
+		short -- Short
+		long -- Long
+	Object Class --> Number --> Long
+				--> Float
+				--> Double
+				--> Integer
+				--> Short
+				--> Byte
+		    --> Character
+		    --> Boolean
+	Integer
+		Constructors
+			Integer(int a){
+				Integer i=new Integer(42);
+				sop(i);	
+			}
+			Integer(String s){
+				Integer i1=new Integer("42");
+				Integer i2=new Integer("abc"); //throws NumberFormatException
+				sop(i1+" "+i2);
+			}
+		Methods
+			public static int parseInt(String s) -- converts string to datatype(int)
+			public static int parseInt(String s,int radix) -- converts string to datatype(int) with radix value
+			int intValue() -- convert wrapper class(Integer) to datatype(int)
+			static Integer valueOf(String s) -- convert a string to wrapper class(Integer)
+	Byte
+		Constructors
+			Byte(byte a){
+				Byte i=new Byte((byte)42);	//in default number is taken as int not as byte so typecast is done
+				sop(i);	
+			}
+			Byte(String s){
+				Byte i1=new Byte("42");
+				Byte i2=new Byte("abc"); //throws NumberFormatException
+				sop(i1+" "+i2);
+			}
+		Methods
+			public static byte parseByte(String s) -- converts string to datatype(byte)
+			public static byte parseByte(String s,int radix) -- converts string to datatype(byte) with radix value
+			byte byteValue() -- convert wrapper class(Byte) to datatype(byte)
+			static Byte valueOf(String s) -- convert a string to wrapper class(Byte)
+	Short
+		Constructors
+			Short(short a){
+				Short i=new Short((short)42);	//in default number is taken as number not as short so typecast is done
+				sop(i);	
+			}
+			Short(String s){
+				Short i1=new Short("42");
+				Short i2=new Short("abc"); //throws NumberFormatException
+				sop(i1+" "+i2);
+			}
+		Methods
+			public static short parseShort(String s) -- converts string to datatype(short)
+			public static short parseShort(String s,int radix) -- converts string to datatype(short) with radix value
+			short shortValue() -- convert wrapper class(Short) to datatype(short)
+			static Short valueOf(String s) -- convert a string to wrapper class(Short)
+	Long
+		Constructors
+			Long(long a){
+				Long i=new Long (42);
+				sop(i);	
+			}
+			Long(String s){
+				Long i1=new Long("42");
+				Long i2=new Long("abc"); //throws NumberFormatException
+				sop(i1+" "+i2);
+			}
+		Methods
+			public static long parseLong(String s) -- converts string to datatype(long)
+			public static long parseLong(String s,int radix) -- converts string to datatype(long) with radix value
+			long longValue() -- convert wrapper class(Long) to datatype(long)
+			static Long valueOf(String s) -- convert a string to wrapper class(Long)
+	Boolean
+		Boolean b1=new Boolean(true);		//true
+		Boolean b2=new Boolean(True);		//compilation error -- other than true or false anything is error without "" case sensitive
+		Boolean b3=new Boolean(false);		//false
+		Boolean b4=new Boolean("hello");	//false -- other than true in any case inside string is false
+		Boolean b5=new Boolean(hello);		//compilation error
+		Boolean b6=new Boolean("True");		//true -- true inside string in any case is accepted
+		Boolean b8=new Boolean("TRUE");		//true
+	Float
+		Constructor
+			Float(double d){
+				Float f1=new Float(3.14);	
+			}
+			Float(float f){
+				Float f1=new Float(3.14f);	
+			}
+			Float(String s){
+				Float f1=new Float("3.14");	
+			}
+		Methods
+			static int compare(float f1,float f2) -- compare 2 float datatype
+			int compareTo(Float f) -- comapre 2 Float object
+			static boolean isNaN(float f); -- to check a float datatype as not a number
+			boolean isNaN() -- to check a Float object as not a number
+			public static float parseFloat(String s) -- converts string to datatype(float)
+			float floatValue() -- convert wrapper class(Float) to datatype(float)
+			static Float valueOf(String s) -- convert a string to wrapper class(Float)
+	Double
+		Constructor	
+			Double(double d){
+				Double f1=new Double(3.14);	
+			}
+			Double(String s){
+				Double f1=new Double("3.14");	
+			}
+		Methods
+			public static Double parseDouble(String s) -- converts string to datatype(double)
+			double doubleValue() -- convert wrapper class(Double) to datatype(double)
+			static Double valueOf(String s) -- convert a string to wrapper class(Double)
+	Character
+		Constructor
+			Character(char ch){
+				Character c=new Character('a');
+			}
+		Methods
+			static boolean isLetter(char ch);
+			static boolean isDigit(char ch);
+			static boolean isLetterOrDigit(char ch);
+			static boolean isUpperCase(char ch);
+			static boolean islowerCase(char ch);
+			static boolean isWhiteSpace(char ch);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;	//package declaration
+class A6{
+	String s;	//instance variable
+	A6(String s1){	//parameterized constructor
+ 		s=s1;
+	}
+	public String toString(){
+		return s;
+	}
+}
+public class Max{				//class declaration
+	public static void main(String[] args){
+		String s="42";
+		int i=Integer.parseInt(s);
+		System.out.println(i);		//42 -- class Integer
+		int j=Integer.parseInt(s,5);
+		System.out.println(j);		//22 -- datatype int
+		Integer i1=new Integer(33);
+		System.out.println(i1.intValue());		//33 -- datatype int
+		Integer i2=Integer.valueOf(s);
+		System.out.println(i2);		//42 -- class Integer
+		int k=i2.intValue();
+		System.out.println(k);		//42 -- datatype int
+		float f1=3.14f,f2=3.14f;
+		System.out.println(Float.compare(f1,f2));		//0 -- result of two float values 3.14 and 3.14
+		float f8=4.14f,f9=3.14f;
+		System.out.println(Float.compare(f8,f9));		//1 -- result of two float values 4.14 and 3.14
+		Float f3=new Float(3.14);
+		Float f4=new Float(3.14);
+		System.out.println(f3.compareTo(f4));			//0 -- result of two Float Objects 3.14 and 3.14
+		Float f6=new Float(3.14);
+		Float f7=new Float(4.14);
+		System.out.println(f6.compareTo(f7));			//-1 -- result of two Float Objects 3.14 and 4.14
+		Float f10=new Float(Math.sqrt(4));
+		System.out.println(f10);			//2.0
+		Float f5=new Float(Math.sqrt(-4));
+		System.out.println(f5);				//NaN
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+AutoBoxing & UnBoxing
+	Available only from jdk 1.5
+	Automatic convertion of datatype to wrapper class(AutoBoxing) and wrapper class to datatype(UnBoxing)
+		with autoboxing --- without autoboxing
+		Integer i; --- Integer i;
+		int j; --- int j;
+		i=5; --- i=new Integer(5);	//AutoBoxing
+		j=10; --- j=10;
+		j=i; --- j=i.intValue();	//UnBoxing
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Scanner
+	present in java.util.*
+	used to get the input from the user based on datatype
+		Scanner s=new Scanner(System.in);
+		String s1=s.nextLine();		//get multiple word with space
+		String s2=s.next();		//get a single word
+		int i=s.nextInt(); 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+this Keyword -- refers to the current class reference variable
+	     -- used when parameter varibale name instance variable name are same
+this() Constructor -- used invoke different constructor of same class
+		   -- always it should be present in the first line
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Sample{
+	int a=10;
+	public Sample() {
+		this(10);
+	}
+	public Sample(int a) {
+		this("Method");			//this() constructor
+		System.out.println(a+this.a);	//20(2) -- this keyword
+	}
+	public Sample(String s) {		//constructor overloading
+		System.out.println(s);		//Method(1)
+	}
+}
+
+public class Main6 {
+	public static void main(String[] args) {
+		new Sample();
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Polymorphism -- one class which takes many forms
+	Static/CompileTime Polymorphism
+		Method Overloading -- same method name but different number, order and datatype of arguement present in the same class
+				   -- dosen't checks the return type
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class A{
+	void test(){
+		System.out.println("no parameter");		//no parameter
+	}
+	void test(int a){
+		System.out.println("no parameter"+a);		//no parameter10
+	}
+	void test(int a,int b){
+		System.out.println("no parameter"+a+b);		//no parameter1020
+	}
+	double test(double a){
+		System.out.println("no parameter"+a);		//no parameter3.15
+		return a*a;
+	}
+}
+
+public class Main4 {
+	public static void main(String[] args) {
+		A a=new A();
+		a.test();
+		a.test(10);
+		a.test(10, 20);
+		double res= a.test(3.15);
+		System.out.println(res);		//9.9225
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+		Constructor Overloading -- same constructor name but different number, order and datatype of arguement present in the same class
+		Varargs(...) -- passing variable number of arguments, available from jdk1.5.
+			     -- in combination of normal argument and variable argument the variable argument should always be last argument
+			     -- a method can have only one varargs
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Varargs{
+	void test(int...a) {
+		for(int a1:a)
+			System.out.println(a1);		//10 20 30 50
+	}
+	void test(boolean...b) {
+		for(boolean b1:b)
+			System.out.println(b1);		//true false true true
+	}
+	void test(int a,String...s) {
+		System.out.println(a);
+		for(String s1:s)
+			System.out.println(s1);
+	}
+}
+
+public class Main5 {
+	public static void main(String[] args) {
+		Varargs v=new Varargs();
+		v.test(10,20,30,50);
+		v.test(true,false,true,true);
+		v.test(100, "var", "args", "is", "used");
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Non-Access Specifiers -- access specifiers applied for anything and non-access specifier has their restrictions
+	static Keyword 
+		when a class is created as static no need to create an object only inner class can be static not outer class 
+		when a method declared to be static and it is present in the same class it is called by methodname,different class means called by classname.methodname
+		if a variable is declared as static it will be initialized only once and invoked as variablename in the same class, classname.variablename if it is in different class
+		static method can access only static content otherwise we have to create an object and access
+		static block will be excecuted before your main method
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Test{
+	static int x=5;
+	public static void display() {
+		System.out.println("static dispaly method in different class");
+	}
+}
+
+public class Main7 {
+	static int a=10;
+	static int c;
+	int b=20;
+	static {		//initialized before execution of main method since static block
+		System.out.println("static block initialized");
+		c=a*10;
+	}
+	public static void main(String[] args) {
+		Test t=new Test();
+		t.display(); 		//warning : change 'static' modifier to 'display()'
+		Test.display();		//static disp1ay method in different class
+		display();			//static display method in same class
+		//display1();		//compilation error : Cannot make a static reference to the non-static method display1() from the type Main7
+		System.out.println(a+" "+c);			//10 100
+		//System.out.println(b);		//compilation error : Cannot make a static reference to the non-static field b
+		Main7 m7=new Main7();
+		System.out.println(m7.b);		//20
+		System.out.println(Test.x);		//5
+	}
+	public void display1() {
+		System.out.println("static display1 method in same class");
+	}
+	public static void display() {
+		System.out.println("static display method in same class");
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+public class System{				
+	static PrintStream out;		//"System.out.println" -- System is class name and out is a object of class PrintStream and println is the method
+	static InputStrean in;		
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+static import -- available from jdk1.5
+	      -- where we can call static methods and static variables directly without using class name
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import static java.lang.Math.*;
+import static java.lang.System.*;
+
+public class Main8 {
+	public static void main(String[] args) {
+		double d=sqrt(16);
+		out.println(d);		//4.0
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Inheritance -- one class acquires the property of another class
+	    -- code reusability , multi-level, hybrid, hierarchical
+	Single Inheritance -- one base class and one derived class
+	super Keyword -- used to access base class constructor,method and variable
+	      	      -- only in the case of accessing base class constructor super should be present in the first line 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Box6{
+	private double width;
+	private double height;
+	private double depth;
+	public Box6(){
+		width=-1;
+		height=-1;
+		depth=-1;
+	}
+	public Box6(Box6 ob){
+		width=ob.width;
+		height=ob.height;
+		depth=ob.depth;
+	}
+	public Box6(double len){
+		width=height=depth=len;
+	}
+	public Box6(double w,double h,double d){
+		width=w;
+		height=h;
+		depth=d;
+	}
+	public double vol() {
+		return width*height*depth;
+	}
+}
+
+class BoxWeight1 extends Box6{				//Single Inheritance
+	double weight;
+	public BoxWeight1() {
+		super();
+		weight = -1;
+	}
+	public BoxWeight1(BoxWeight1 ob) {
+		super(ob);				//to access base class private variables super keyword is used
+		weight = ob.weight;
+	}
+	public BoxWeight1(double len,double we) {
+		super(len);
+		weight = we;
+	}
+	public BoxWeight1(double w,double h,double d,double we) {
+		super(w,h,d);
+		weight = we;
+	}
+}
+
+public class Main11 {
+	public static void main(String[] args) {
+		BoxWeight1 bw=new BoxWeight1();
+		BoxWeight1 bw1=new BoxWeight1(2, 3, 4, 5);
+		BoxWeight1 bw2=new BoxWeight1(5, 2);
+		BoxWeight1 bw3=new BoxWeight1(bw1);
+		double vol;
+		vol=bw.vol(); 
+		System.out.println("Volume is "+vol+"  "+"Weight is "+bw.weight); 		//Volume is -1.0  Weight is -1.0
+		vol=bw1.vol();
+		System.out.println("Volume is "+vol+"  "+"Weight is "+bw1.weight);		//Volume is 24.0  Weight is 5.0
+		vol=bw2.vol();
+		System.out.println("Volume is "+vol+"  "+"Weight is "+bw2.weight);		//Volume is 125.0  Weight is 2.0
+		vol=bw3.vol();
+		System.out.println("Volume is "+vol+"  "+"Weight is "+bw3.weight);		//Volume is 24.0  Weight is 5.0
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+	Multi-Level Inheritance -- a class is derived from a class which is also derived from another class
+	Always constructors are invoked in inheritance in a top down approach
+	First it goes to related class constructor and checks for this/super otherwise it tries to invoke only the default constructor of base class
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Task1{
+	public Task1() {				//Multi-Level Inheritance
+		System.out.println("Task1");
+	}
+	public Task1(int a) {
+		System.out.println("Task1 int");
+	}
+}
+
+class SubTask1 extends Task1{
+	public SubTask1() {
+		System.out.println("SubTask1");
+	}
+}
+
+class InnerTask1 extends SubTask1{
+	public InnerTask1() {
+		System.out.println("InnerTask1");
+	}
+}
+
+public class Main13 {
+	public static void main(String[] args) {
+		new InnerTask1();		//Task1 SubTask1 InnerTask1
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Task2{
+	{
+		System.out.println("1");		//compound block/instance block gets executed before constructor invokes 
+	}
+	static {
+		System.out.println("2");
+	}
+	{
+		System.out.println("3");
+	}
+	public Task2() {
+		System.out.println("4");
+	}
+	static {
+		System.out.println("5");
+	}
+	public Task2(String s) {
+		this();
+		System.out.println("6");
+	}
+}
+
+class SubTask2 extends Task2{
+	static {
+		System.out.println("7");
+	}
+	{
+		System.out.println("8");
+	}
+	static {
+		System.out.println("8a");
+	}
+	public SubTask2() {
+		this(10);
+		System.out.println("9");
+	}
+	public SubTask2(int a) {
+		super("hello");
+		System.out.println("10");
+		System.out.println("11");
+	}
+}
+
+class InnerTask2 extends SubTask2{
+	{
+		System.out.println("12");
+	}
+	static {
+		System.out.println("13");
+	}
+	public InnerTask2() {
+			System.out.println("14");
+	}
+	{
+		System.out.println("15");
+	}
+	public InnerTask2(String s) {
+		this();
+		System.out.println("16");
+	}
+	static {
+		System.out.println("17");
+	}
+}
+
+public class Main14 {
+	static {
+		System.out.println("18");
+	}
+	public static void main(String[] args) {
+		System.out.println("19");
+		new InnerTask2("hel");
+		System.out.println("20");
+	}
+	static {
+		System.out.println("21");
+	}
+}
+//18 21 19 2 5 7 8a 13 17 1 3 4 6 8 10 11 9 12 15 14 16 20
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Is A Relationship -- where ever inheritance comes and that type of relationship is Is A relationship
+Has A Relationship -- if we try to create a object of a class in another class is called Has A relationship
+
+	Hierarchichal Inheritance -- one base class and many derived class
+	Dynamic/RunTime Polymorphism
+		Method Overriding -- same method name,same return type of method,same number, order and datatype of argument present in different class and the class should be inherited
+		In order to have effective method overriding we have dynamic method dispatch, where we create object for the base class but we store the reference of derived class
+		At compilation the compiler thinks object is created for base class only at the time of execution it knows the object contains the reference of derived class, in this way we achieve run time polymorphism
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Task3{
+	public void show(){
+		System.out.println("base class method");
+	}
+}
+
+class SubTask3 extends Task3{
+	public void show(){						//Method Overriding
+		super.show();
+		System.out.println("derived class method");
+	}
+}
+
+public class Main15 {
+	public static void main(String[] args) {
+		SubTask3 sb=new SubTask3();
+		sb.show();
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Task4{								//Dynamic Method Dispatch
+	public void call(){						//Hierarchichal Inheritance
+		System.out.println("Task4 base class method");
+	}
+}
+
+class SubTask4 extends Task4{
+	public void call(){
+		System.out.println("SubTask4 derived class method");
+	}
+}
+
+class InnerTask4 extends Task4{
+	public void call(){
+		System.out.println("InnerTask4 derived class method");
+	}
+}
+
+public class Main16 {						
+	public static void main(String[] args) {
+		Task4 t=new Task4();			//Task4 base class method
+		t.call();
+		t=new SubTask4();			//SubTask4 derived class method
+		t.call();
+		t=new InnerTask4();			//InnerTask4 derived class method
+		t.call();
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Final Keyword -- Non-Access Specifier
+	      -- if a class is declared as final, it cannot be inherited
+	      -- if a method is declared as final, it cannot be overriden
+	      -- if a variable is declared as final, it cannot be changed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Task8{
+	final int a=10;
+	public void display() {
+		System.out.println("display method of Task8 displays a final variable a value "+a);
+	}
+}
+
+final class SubTask8 extends Task8{		//if class Task8 is final -- Compilation error: The type SubTask1 cannot subclass the final class Task1
+	public void display() {				//if display() in Task8 is final -- Compilation error: class com.test.SubTask8 overrides final method display.()
+		System.out.println("display method of SubTask8");
+	}
+}
+
+class InnerTask8 extends Task8{		//if class Task8 is final -- Compilation error: The type SubTask1 cannot subclass the final class Task1
+	final public void display1() {
+		System.out.println("display method of InnerTask8");
+	}
+}
+
+public class Main21 {
+	public static void main(String[] args) {
+		Task8 t=new Task8();		
+		t.display();					//display method of Task8 displays a final variable  a value 10
+		//t.a=11;					//Compilation error: The final field Task8.a cannot be assigned
+		t=new SubTask8();			
+		t.display();					//display method of SubTask8
+		t=new InnerTask8();			
+		((InnerTask8) t).display1();			//display method of InnerTask8
+	}							//object is casted to class InnerTask8 because 't' is the object is of class Task8 and it dosen't have a method named display1()
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Accessor(getter) and Mutator(setter)
+Object Class -- super class of all the classes
+	Constructor -- Object()
+	Method -- String toString() -- to get a content form the object not the reference 
+		  boolean equals(Object o) -- to get the equality of the objects
+		  int hashCode() -- returns the internal address for the value stored in the object
+	   		         -- if two objects are equal according to equals method hashcode method produce the same integer
+		  final void wait()
+	  	  final void wait(long millisecond)
+		  final void notify()
+		  final void notifyAll()
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class Employee{
+	private int age;
+	private String name;
+	
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	@Override
+	public String toString() {				
+		return "Employee [age=" + age + ", name=" + name + "]";
+	}		
+}
+
+public class Main17 {
+	public static void main(String[] args) {
+		Employee emp=new Employee();
+		emp.setAge(220);
+		emp.setName("RajaRajaCholan");
+		System.out.println(emp.getAge());		//220
+		System.out.println(emp.getName());		//RajaRajaCholan
+		System.out.println(emp);			//Employee [age=220, name=RajaRajaCholan]
+		String s2="hello";
+		String s1=new String("hello");
+		System.out.println(s2.hashCode()+" "+s1.hashCode());		//99162322 99162322
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Abstract Keyword -- Non-Access Specifier
+		 -- when a class is declared to be abstracted, it cannot be instantiated
+		 -- when a method is declared to abstract, it does not contain defenition just it ends with ';'
+		 -- varibles can't be abstract 
+		 -- a class should be abstract, if it contains an abstract method but not necessarly all the abstract class should have abstract method
+		 -- abstract class can also contain some normal methods
+		 -- the abstract class can also be inherited at that time we have to compulsarly give the defenition of the abstract method in the inherited class or define the class itself to be abstract
+		 -- abstract class contains a default constructor but cannot be invoked
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+abstract class Task5{
+	abstract void show();
+	public void show1() {
+		System.out.println("normal method is displayed");
+	}
+}
+
+class SubTask5 extends Task5{
+	@Override
+	void show() {
+		System.out.println("abstract method is displayed");
+	}
+}
+
+public class Main18 {
+	public static void main(String[] args) {
+		SubTask5 sb=new SubTask5();
+		sb.show();		//abstract method is displayed
+		sb.show1();		//normal method is displayed
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Interface -- instead of multiple inheritance we use interface
+	  -- interfaces are simtatically similar to classes which contains method declarations and variable declaration and initialization
+	  -- syntax : access_specifier(public/default) interface interfaceName{method declarations and variable declarations,initializations}
+	  -- by default all interfaces are abstract so we cannot create onject for interfaces
+	  -- by default interface methods are public and abstract
+	  -- by default all interface variables are public, static and final so interface variables are accessed using interfaceName.variableName
+	  -- interfaces are used using 'implements' keyword
+	  -- if a class implements an interface we have to compulsarly give the defenition of the interface method with public access specifier or define the class itself to be abstract
+	  -- the implemented class can also contain some normal methods
+	  -- interfaces can also be inherited
+	  -- in java we have one class extends one class
+	  -- one class implements many interface
+	  -- one interface extends many interface	
+	  -- an interface without any methods and variables is called marker interface		
+	  -- Serializable, Clonable, Remote,... are examples for marker interface
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+public interface Max {
+	public void arithmetic(int a,int b);
+	int c=20;
+}
+
+package com.test;
+
+class Task6 implements Max{
+	@Override
+	public void arithmetic(int a, int b) {
+		System.out.println(a+b+Max.c);
+	}
+}
+
+class SubTask6 implements Max{
+	@Override
+	public void arithmetic(int a, int b) {
+		System.out.println(a-b-Max.c);
+	}
+	public void show() {
+		System.out.println("Non-implemented method");
+	}
+}
+
+public class Main19 {
+	public static void main(String[] args) {
+		Max m=new Task6();
+		m.arithmetic(10, 20);		//50
+		m=new SubTask6();
+		m.arithmetic(50, 10);		//20
+		//m.show();			//Compilation error : The method show() is undefined for the type Max
+		( (SubTask6) m).show();		//Non-implemented method : since show method is not present in interface
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+interface Task7{
+	void add1();
+}
+
+interface SubTask7{
+	void add2();
+}
+
+interface InnerTask7 extends SubTask7,Task7{
+	void add3();
+}
+
+class BaseTask implements InnerTask7{
+	@Override
+	public void add2() {
+		System.out.println("add of SubTask");
+	}
+	@Override
+	public void add1() {
+		System.out.println("add of Task");
+	}
+	@Override
+	public void add3() {
+		System.out.println("add of InnerTask");
+	}
+}
+
+public class Main20 {
+	public static void main(String[] args) {
+		BaseTask bt=new BaseTask();
+		bt.add1();		//add of Task
+		bt.add2();		//add of SubTask
+		bt.add3();		//add of InnerTask
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Exception Handling
+	Object -- Throwable(java.lang.*) -- Exception -- RunTime Exception -- Error
+							      		   -- ArithmeticException
+							      		   -- ArrayIndexOutOfBoundsException
+							                   -- NullPointer
+							      		   -- NumberFormatException
+					 -- ClassNotFoundException
+					 -- SQLException
+					 -- IOException
+	Checked Exception -- sub-classes of exception, it will insist the programmer to surround the code using try catch or throws otherwise the compiler will not compile the prg
+	UnChecked Exception -- sub-classes of runtime exception, the compiler will not insist the prgmer to surround with try catch but at the time of excecution it throws error 
+		ArithmethicExcption -- when a number is divided by 0 
+		ArrayIndexOutOfBoundsException -- applicable for datatypes array 
+		StringIndexOutOfBoundsException -- applicable only for string array
+		ArrayStoreException -- try to store invalid elements in the array(mismatch of datatype)
+		NegativeArraySizeException -- if we declare array with negative array size we cannot access it, if we access exception is thrown
+		ClassCastException -- we can refer the derived class object to base class object if we refer the base class object to derived class object then ClassCastException throws
+		NullPointerException -- if we try to invoke anything with null reference 
+		NumberFormatException -- if we parse any string that has invalid numeric value
+		IllegalMonitorStateException
+		IllegalThreadStateException
+	Keywords
+		try -- prg to monitor for exception is put inside try block
+		catch -- used to caught the exception
+			Multi-Catch Statement -- single try can have multiple catch block
+					      -- from jdk1.7 multi catch block is given in a single block with the help of '|' symbol 
+		finally -- it is an optional statement used to close the resourses, if it is used whether exception occurs or not it will be excecuted after the try block
+			-- mainly used in file prging, db prging, socket prging
+		throws -- used to throw the exception and excecutes as usual it can be used only in methods
+		throw -- used to manually throw any exception 
+		      -- syntax : throw new ArithmeticException();
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+public class Main23 {
+	public static void main(String[] args) {
+		try{
+			 int b=42/0;
+			int[] a= {1};
+			a[20]=50;
+		}
+		/*catch (ArithmeticException e) {
+			// TODO: handle exception
+			System.out.println(e);			//java.lang.ArithmeticException: / by zero
+
+		}
+		catch (ArrayIndexOutOfBoundsException e1) {
+			// TODO: handle exception
+			System.out.println(e1);			//java.lang.ArrayIndexOutOfBoundsException: 20
+		}*/
+		catch (ArithmeticException |ArrayIndexOutOfBoundsException e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+public class Main24 {
+	static void demo() {
+		//System.out.println("demo");
+		try {
+			throw new NullPointerException();
+		}
+		catch(NullPointerException exception) {
+			System.out.println("caught "+exception);		//caught java.lang.NullPointerException
+			throw exception;
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			demo();
+		}
+		catch(NullPointerException exception) {
+			System.out.println("re-caught "+exception);		//re-caught java.lang.NullPointerException
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+public class Main25 {
+	static void demo() {
+		//System.out.println("demo");
+		try {
+			System.out.println("Inside demo");
+			throw new RuntimeException();
+		}
+		finally {
+			System.out.println("demo finally");
+		}
+	}
+	static void demo1() {
+		//System.out.println("demo");
+		try {
+			System.out.println("Inside demo1");
+			return;
+		}
+		finally {
+			System.out.println("demo1 finally");
+		}
+	}
+	static void demo2() {
+		//System.out.println("demo");
+		try {
+			System.out.println("Inside demo2");
+		}
+		finally {
+			System.out.println("demo2 finally");
+		}
+	}
+	public static void main(String[] args) {
+		try {
+			demo();									//Inside demo
+		}											//demo finally
+		catch(Exception exception) {				//Caught
+			System.out.println("Caught");			//Inside demo1			
+		}											//demo1 finally	
+		demo1();									//Inside demo2			
+		demo2();									//demo2 finally				
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+class MyException extends Exception{
+	private int detail;
+	public MyException(int a) {
+		detail=a;
+	}
+	@Override
+	public String toString() {
+		return "MyException [detail=" + detail + "]";
+	}
+}
+
+public class Main26 {
+
+	static void compute(int a) throws MyException {
+		//System.out.println("demo");
+		System.out.println("called compute "+a);		
+		if(a>10)
+			throw new MyException(a);
+		System.out.println("Normal exit");				
+	}
+	
+	public static void main(String[] args) {
+		try {
+			compute(1);								//called compute 1
+			compute(20);							//Normal exit
+		}											//called compute 20
+		catch (MyException e) {						//caught MyException [detail=20]
+			// TODO: handle exception				
+			System.out.println("caught "+e);		
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+java.util.* -- Utility package or Collection framework
+	Collection Framework -- used to store a collection of objects
+		Collection Interface -- it is a core interface to store a collection of objects
+		Collections Class -- provides with static algorithm to support util package
+	Collection Interface -- List Interface(ordered, duplictes allowed) -- ArrayList Class
+									   -- LinkedList Class
+									   -- Vector Class
+			     -- Set Interface(unordered, no duplicates allowed) -- HashSet Class
+									        -- LinkedHashSet Class
+										-- SortedSet Interface
+											-- TreeSet Class
+	List Interface
+		ArrayList Class -- it is a dynamic array used to increase/decrease its size at runtime
+				-- faster in selection and slower in insertion and deletion
+				-- default capacity is 10
+			Constructor
+				ArrayList()
+				ArrayList(int capacity)
+				ArrayList(Collection c)
+			Method
+				void add(Object obj)
+				void add(int index,Object obj)
+				void addAll(Collection c)
+				void addAll(int index,Collection c)
+				Object get(int index)
+				void remove(int index)
+				Object set(int index,Object obj)
+				int indexOf(Object obj)
+				int lastIndexOf(Object obj)
+				boolean contains(Object obj)
+				int size()
+				boolean isEmpty()
+	Iterator Interface -- used to access individual elts odf collection, moves only in forward direction
+		   	   -- when ever iterator is used while() should be used
+		Method 
+			boolean hasNext() -- checks whether it contains more elts
+			Object next() -- return single elt
+			void remove() -- to remove elt while accessing
+	ListIterator Interface -- used to access individual elts odf collection, moves in both forward and reverse direction
+	       	    	       -- when ever iterator is used while() should be used
+		Method 
+			boolean hasNext() -- checks whether it contains more elts after
+			Object next() -- return single elt present before
+			void remove() -- to remove elt while accessing
+			boolean hasPrevious() -- checks whether it contains more elts before
+			Object previous() -- return single elt present before
+			void add(Object obj) -- to add elt while accessing
+			Object set(int index,Object obj)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+public class Main27 {
+	public static void main(String[] args) {
+		List<Employee> al=new ArrayList<Employee>();		//generics(used to mention the type of list) from jdk1.5 
+		List<Employee> al1=new ArrayList<>();		//from jdk1.7
+		List<String> l=new ArrayList<>();
+		System.out.println(l.size());			//0
+		l.add("a");
+		l.add("g");
+		l.add("d");
+		l.add("r");
+		l.add("y");
+		System.out.println(l.size());				//5
+		Iterator li1=l.iterator();
+		while(li1.hasNext()) {
+			Object o=li1.next();
+			System.out.println(o);				//a+ g+ d+ r+ y+
+		}
+		ListIterator li=l.listIterator();
+		while(li.hasNext()) {
+			Object o=li.next();
+			li.set(o+"+ ");
+		}
+		li=l.listIterator();
+		while(li.hasNext()) {
+			Object o=li.next();
+			System.out.println(o);				//a+ g+ d+ r+ y+
+		}
+		System.out.println("\n");
+		while(li.hasPrevious()) {
+			Object o=li.previous();
+			System.out.println(o);
+		}
+		System.out.println(l);
+		l.remove(2);
+		l.remove("y");
+		System.out.println(l);
+		ArrayList<String> al2=new ArrayList<>();
+		al2.addAll(l);
+		System.out.println("al2"+al2);
+		System.out.println(al2.contains("g"));
+		System.out.println(al2.containsAll(l));
+		al2.removeAll(l);
+		System.out.println(al2);
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+		LinkedList Class -- similar to ArrayList, also called Dynamic Array
+			 	 -- faster in insertion and deletion, slower selction because LinkedList implements List, Deque(where insertion and deletion are done @both ends) Interfaces
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class Main28 {
+	public static void main(String[] args) {
+		LinkedList<Integer> l=new LinkedList<>();
+		System.out.println(l.size());		//0
+		l.add(10);
+		l.add(2);
+		l.addFirst(13);
+		l.addLast(5);
+		l.add(17);
+		l.add(2, 9);
+		System.out.println(l);		//[13, 10, 9, 2, 5, 17]
+		l.remove(2);
+		l.removeFirst();
+		l.removeLast();
+		System.out.println(l);			//[10, 2, 5]
+		System.out.println(l.get(1));		//2
+		System.out.println(l.getFirst());		//10
+		System.out.println(l.getLast());		//5
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+		Vector Class -- similar to ArrayList but it is synchronized or thread safe
+		     	     -- it is a legacy class
+		    	     -- default capacity of 10
+			Constructor
+				Vector()
+				Vector(int capacity)
+				Vector(int capacity,int capacityIncrement)
+				Vector(Collection c)
+	Enumeration Interface -- it is a legacy interface
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.Enumeration;
+import java.util.Vector;
+
+public class Main29 {
+	public static void main(String[] args) {
+		Vector v=new Vector<>(3, 2);
+		System.out.println(v.size()+" "+v.capacity());			//0 3
+		v.add(1);
+		v.add(2);
+		v.add(3);
+		v.add(4);
+		System.out.println(v.size()+" "+v.capacity());			//4 5
+		v.add(5);
+		v.add(6);
+		System.out.println(v.size()+" "+v.capacity());			//6 7
+		v.add(7);
+		v.add(8);
+		System.out.println(v.size()+" "+v.capacity());			//8 9
+		System.out.println(v);
+		Enumeration e=v.elements();		//Enumeration interface(legacy)
+		while(e.hasMoreElements()) {
+			System.out.println(e.nextElement());
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+	Set Interface
+		HashSet Class -- it is used to prints the element in the random order
+   			      -- default capacity is 16
+   			      -- whenever we add the elements into HashSet, internally it creates the map which contains the inserted value as a key and dummy object for the value
+			Constructors
+      				HashSet()
+      				HashSet(int capacity)
+      				HashSet(int capacity,float fillratio)--it ranges from 0.0 to 1.0,default is 0.75.If the capacity is less than the number of elements it is multiplied by fill ratio,inorder to increase the capacity.
+      				HashSet(Collection c)
+		LinkedHashSet Class -- prints the element in the order which we have inserted
+		TreeSet Class -- used to sort the elements in alphabetical and asceneding order
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Map Interface -- Abstract Map -- HashMap -- LinkedHashMap
+	      -- Sorted Map -- TreeMap
+	      -- used to store a collection of object as a unique key-value pair 
+	      -- map is un-ordered
+	Method
+		void put(Object key,Object value)
+		void putAll(Map m)
+		Object get(Object key)
+		void remove(Object key)	
+		boolean containsKey(Object key)
+		boolean containsValue(Object key)
+		Set entrySet() -- converts both key and value to Set interface
+		Set keySet() -- converts only key to Set interface
+Map.Entry Interface -- used access the key and value separately
+	HashMap Class -- contains unique key value pair and prints in random order
+		-- default capacity is 16 
+		-- methods similar in Map Interface
+		Constructor
+			HashMap()
+			HashMap(int capacity)
+			HashMap(int capacity,float fillratio)
+			HashMap(Map m)
+	LinkedHashMap Class -- contains key-value pair and print in the order in which we have inserted
+	TreeMap Class -- used to sort the elements based on key
+	HashTable Class -- it is a legacy class similar to HashMap but it is synchronized or thread safe
+		Properties Class -- it is a subclass of HashTable contains unique key-value pair both should be in the form of string
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class Main30 {
+	public static void main(String[] args) {
+		Map<String,Double> hm=new HashMap<>();
+		Map<String,Double> hm=new LinkedHashMap<>();
+		Map<String,Double> hm=new TreeMap<>();
+		Hashtable<String,Double> hm=new Hashtable();
+		System.out.println(hm.size());			//0
+		hm.put("arul", 253.64);
+		hm.put("surendhar kaka", 9.2034);
+		hm.put("praveen dd", -987.1);
+		hm.put("arul", 53.6);
+		hm.put("rishad", 61.8);
+		System.out.println(hm);				//{arul=53.6, surendhar kaka=9.2034, rishad=61.8, praveen dd=-987.1} -- in a random order
+		Set s=hm.entrySet();
+		Iterator it=s.iterator();
+		while(it.hasNext()) {
+			Map.Entry me=(Entry) it.next();
+			System.out.println(me.getKey()+" "+me.getValue()+" -- entrySet");		//HashMap/LinkedHashMap : arul 53.6 surendhar kaka 9.2034 rishad 61.8 praveen dd-987.1
+		}
+		s=hm.keySet();
+		it=s.iterator();
+		while(it.hasNext()) {
+			String s1=(String) it.next();
+			System.out.println(s1+" "+hm.get(s1)+" -- keySet");		//TreeSet : arul 53.6 praveen dd-987.1 rishad 61.8 surendhar kaka 9.2034 
+		}
+		Enumeration e=hm.keys();
+		while(e.hasMoreElements()) {
+			String s1=(String) e.nextElement();
+			System.out.println(s1+" "+hm.get(s1)+" -- Enumeration");		//HashMap : rishad 61.8 arul 53.6 praveen dd-987.1 surendhar kaka 9.2034
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.Set;
+
+public class Main31 {
+	public static void main(String[] args) {
+		Properties p=new Properties();
+		System.out.println(p.size());
+		p.put("Tom Riddle", "villan");
+		p.put("Harry Potter", "Hero");
+		p.put("Albus De Dumbuldore", "Well-Wisher");
+		p.put("Ron willson", "friend");
+		p.put("Sirius Black", "paternal uncle");
+		System.out.println(p);				//{Ron willson=friend, Albus De Dumbuldore=Well-Wisher, Harry Potter=Hero, Tom Riddle=villan, Sirius Black=paternal uncle}
+		Set s=p.keySet();
+		Iterator it=s.iterator();
+		while(it.hasNext()) {
+			String s1=(String) it.next();
+		System.out.println(s1+" "+p.getProperty(s1)+" -- Properties class");  //Ron willson friend Albus De Dumbuldore Well-Wisher Harry Potter Hero Tom Riddle villan Sirius Black paternal uncle 
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Date Class -- used to print date and time
+	Constructor 
+		Date() -- prints current date and time
+		Date(long millisecond) -- prints the date and time from jan 1st 1970
+	Method
+		int compareTo(Date d)
+		boolean before(Date d)
+		boolean after(Date d)
+		void setTime(long milliSecond)
+		long getTime()
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.Date;
+
+public class Main32 {
+	public static void main(String[] args) {
+		Date d1=new Date();
+		System.out.println(d1);				//Tue Jul 23 10:39:22 IST 2019
+		Date d2=new Date(10000000);			
+		System.out.println(d2);				//Thu Jan 01 08:16:40 IST 1970
+		System.out.println(d1.compareTo(d2));		//1
+		System.out.println(d1.after(d2));			//true
+		System.out.println(d1.before(d2));			//false
+		System.out.println(d2.getTime());			//10000000
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Calender Class -- it is a abstract class used to extract the useful information from date and time component
+	Constructor 
+		Calender()
+	Method
+		public static Calender getInstance() -- to create an object for Calender class, it prints current date and time
+		public int get(int field)
+		public int add(int field , int value)
+		public int set(int field, int value)
+		public boolean before(Calender c)
+		public boolean after(Calender c)
+		public int getActualMaximum(int field)
+		public int getActualMinimun(int field)
+		public int getMaximum(int field)
+		public int getMinimun(int field)
+		final Date getTime() -- converts Calender to Date
+		final void setTime(Date d) -- converts Date to Calender
+GregorianCalender -- it is a concrete implementation of Calender class used to extract info. from date and component
+	Constructor
+		GregorianCalender() -- current date and time
+		GregorianCalender(int year,int month,int date)
+		GregorianCalender(int year,int month,int date,int hours,int minutes,int seconds)
+	Method
+		similar to Calender class
+		boolean isLeapYear(int year)
+	Constants
+		public static final int YEAR
+		public static final int MONTH
+		public static final int DATE
+		public static final int HOUR
+		public static final int MINUTE
+		public static final int SECOND
+		public static final int MILLISECOND
+		public static final int ERA
+		public static final int AM
+		public static final int PM
+		public static final int MONDAY-SUNDAY
+		public static final int JANUARY-DECEMBER
+		public static final int DAY_OF_MONTH
+		public static final int DAY_OF_WEEK
+		public static final int DAY_OF_WEEK_IN_MONTH
+		public static final int DAY_OF_YEAR
+		public static final int WEEK_OF_YEAR
+		public static final int WEEK_OF_MONTH
+		public static final int HOUR_OF_DAY
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class Main33 {
+	public static void main(String[] args) {
+		Calendar calendar=Calendar.getInstance();
+		System.out.println(calendar.getTime());			//Tue Jul 23 11:44:25 IST 2019
+		Date d1=new Date(2000000000);
+		Calendar calendar2=Calendar.getInstance();		
+		System.out.println(calendar2.getTime());		//Tue Jul 23 11:44:25 IST 2019
+		System.out.println(calendar.get(calendar.YEAR));		//2019
+		System.out.println(calendar.get(calendar.MONTH));		//6
+		System.out.println(calendar.get(calendar.DATE));		//23
+		calendar.add(calendar.YEAR, -4);						
+		System.out.println(calendar.get(calendar.YEAR));		//2015
+		calendar.set(calendar.MONTH, 9);		
+		System.out.println(calendar.MONTH);						//9
+		System.out.println(calendar.getMaximum(calendar.YEAR));			//292278994
+		System.out.println(calendar.getMinimum(calendar.YEAR));			//1
+		System.out.println(calendar2.getActualMaximum(calendar.MONTH));			//11
+		System.out.println(calendar2.getActualMinimum(calendar.MONTH));			//0
+		System.out.println(calendar.get(calendar.DAY_OF_YEAR));					//296
+		GregorianCalendar gCalendar=new GregorianCalendar();
+		System.out.println(gCalendar);							//java.util.GregorianCalendar[time=1563862510973,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Asia/Calcutta",offset=19800000,dstSavings=0,useDaylight=false,transitions=6,lastRule=null],firstDayOfWeek=1,minimalDaysInFirstWeek=1,ERA=1,YEAR=2019,MONTH=6,WEEK_OF_YEAR=30,WEEK_OF_MONTH=4,DAY_OF_MONTH=23,DAY_OF_YEAR=204,DAY_OF_WEEK=3,DAY_OF_WEEK_IN_MONTH=4,AM_PM=0,HOUR=11,HOUR_OF_DAY=11,MINUTE=45,SECOND=10,MILLISECOND=973,ZONE_OFFSET=19800000,DST_OFFSET=0]
+		int year=gCalendar.get(calendar2.YEAR);
+		System.out.println(gCalendar.isLeapYear(year));			//false
+		Date d2=calendar2.getTime();
+		System.out.println(calendar+" -- "+d2);       //java.util.GregorianCalendar[time=1445581189022,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Asia/Calcutta",offset=19800000,dstSavings=0,useDaylight=false,transitions=6,lastRule=null],firstDayOfWeek=1,minimalDaysInFirstWeek=1,ERA=1,YEAR=2015,MONTH=9,WEEK_OF_YEAR=43,WEEK_OF_MONTH=4,DAY_OF_MONTH=23,DAY_OF_YEAR=296,DAY_OF_WEEK=6,DAY_OF_WEEK_IN_MONTH=4,AM_PM=0,HOUR=11,HOUR_OF_DAY=11,MINUTE=49,SECOND=49,MILLISECOND=22,ZONE_OFFSET=19800000,DST_OFFSET=0] -- Tue Jul 23 11:49:49 IST 2019
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+SimpleDateFormat Class -- present in java.text.*
+		       -- used for formating(Date to String) and parsing(String to Date)
+	Constructor
+		SimpleDateFormat()
+		SimpleDateFormat(String pattern)
+			patterns
+			G -- represents era
+			y -- represents year in number
+			Y -- represents week of year
+			M -- represents month of year(MMMM-january/MMM-jan/MM-01)
+			W -- represents week in month
+			D -- day in year
+			d -- day in month
+			E -- day name in week(EEEE-tuesday/EEE-tue)
+			a -- am/pm
+			H -- hour in day(0-23)
+			k -- hour in day(1-24)
+			K -- hour in am/pm(0-11)
+			h -- hour in am/pm(1-12)
+			m -- minutes
+			s -- seconds
+			S -- milliseconds
+	Method
+		void setLinent(boolean on)
+		Date parse(String s)
+		String format(Date d)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Main34 {
+	public static void main(String[] args) {
+		Date d=new Date();
+		System.out.println(d);				//Tue Jul 23 12:05:55 IST 2019
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter date of birth(dd/MM/yy)");		//Enter date of birth(dd/MM/yy)
+		String date=sc.nextLine();									//29/06/98
+		SimpleDateFormat sd=new SimpleDateFormat("dd/MM/yy");
+		sd.setLenient(false);			
+		
+		try {
+			d=sd.parse(date);
+			System.out.println(d);			//Mon Jun 29 00:00:00 IST 1998
+		}
+		catch(ParseException p) {
+			System.out.println(p);
+		}
+		sd=new SimpleDateFormat("dd-MM-yyyy");
+		String s1=sd.format(d);
+		System.out.println(s1);					//29-06-1998
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+java.io.* -- File Class(access info. about the existing file)
+	  -- Stream Class(perform operation on file) -- ByteStream Class(read&write in bytes)
+								-- InputStream(abstract)(read in bytes)
+									-- FileInputStream
+								-- OutputStream(abstract)(write in bytes)
+									-- FileOutputStream
+						     -- CharacterStream Class(read&write in characters)
+								-- Reader(abstract)(read in characters)
+									-- FileReader
+								-- Writer(abstract)(write in characters)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------									-- FileWriter
+package com.test;
+
+import java.io.File;
+
+public class Main35 {
+	public static void main(String[] args) {
+		File f=new File("C:\\New folder\\test.txt");
+		System.out.println(f.getName());			//test.txt
+		System.out.println(f.getPath());			//C:\New folder\test.txt
+		System.out.println(f.getAbsolutePath());	//C:\New folder\test.txt
+		System.out.println(f.getParent());			//C:\New folder
+		System.out.println(f.isFile());				//true
+		System.out.println(f.isDirectory());		//false
+		System.out.println(f.length());				//7
+		System.out.println(f.lastModified());		//1563864893296
+		System.out.println(f.canRead());			//true
+		System.out.println(f.canWrite());			//true
+		System.out.println(f.isHidden());			//false
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Reader Class -- abstract class used to read in the form of characters
+	Method
+		int read() -- used to read single character, returns -1 if eof is encountered
+		int read(char[] c) -- used to read a array of characters, returns the no. of bytes read
+		int read(char[] c,int offSet,int numChars)
+FileReader Class -- it extends Reader Class 
+		 -- used to read data from file in form of characters
+		 -- if the file does not exist, it throws FileNotFoundException
+	Constructor
+		FileReader(String filePath)
+		FileReader(String filePath,String name)
+		FileReader(File f)
+
+Writer Class -- abstract class used to write in the form of character
+	Method
+		void write(char c)
+		void write(char[] c)
+		void write(char[] c,int offSet,int numChars)
+		void close()
+		void flush()
+FileWriter Class -- it extends Reader Class 
+		 -- used to write data in file in form of characters
+		 -- if the file does not exist, it creates a new file
+		 -- if the file exists, it over-writes
+	Constructor
+		FileWriter(String filePath)
+		FileWriter(String filePath,boolean append)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main36 {
+	public static void main(String[] args) throws IOException {
+		FileWriter fw = new FileWriter("C:\\New folder\\testWrite.txt");
+		fw.write("muttonkushkawa");
+		fw.close();
+		FileReader fr=new FileReader("C:\\New folder\\testWrite.txt");
+		int i;
+		while((i=fr.read()) != -1)
+			System.out.println((char)i);			//m u t t o n k u s h k a w a
+		fr.close();
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------		
+StringBuffer -- java.lang.*
+    	     -- it is a mutable class with variable number of characters
+    	     -- it is synchronized or threadSafe and we cannot override the equals method in StringBuffer
+	Constructors
+		StringBuffer()
+		StringBuffer(String s)
+		StringBuffer(int capacity)//default is 16.
+	Methods:
+		int length()
+		void setCharAt(int location,char c)
+		void setLength(int len)
+		char charAt(int loc)
+		void append(String s)
+		void append(int a)
+		void append(Object o) 
+		void insert(int i,String s)
+		void Reverse(String s)
+		void delete(int start,int end)
+		void deleteCharAt(int loc)
+		void replace(int start,int end,String s)
+StringBuilder -- Similar to StringBuffer but it is synchronized or thread safe,So it gives a better performance
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.test;
+
+public class Main37 {
+	public static void main(String[] args) {
+		StringBuffer sb=new StringBuffer("hello");
+        	System.out.println(sb.length());		//5
+        	System.out.println(sb.charAt(1));		//e
+        	sb.setCharAt(1, 'i');				
+       		System.out.println(sb);				//hillo
+        	sb.setLength(2);
+        	System.out.println(sb);				//hi
+        	System.out.println(sb.capacity());		//21
+        	String s;
+        	int a=42;
+        	StringBuffer sb1=new StringBuffer();		
+        	s=sb1.append("a= ").append(a).append("!").toString();		
+        	System.out.println(s);						//a= 42!
+        	StringBuffer sb2=new StringBuffer("I Java!");
+        	sb2.insert(2,"like ");
+        	System.out.println(sb2);					//I like Java!
+        	StringBuffer sb4=new StringBuffer("ancdef");
+        	sb4.reverse();
+        	System.out.println(sb4);					//fedcna
+        	StringBuffer sb5=new StringBuffer("This is a test.");
+        	sb5.deleteCharAt(1);
+        	System.out.println(sb5);					//Tis is a test.
+        	StringBuffer sb6=new StringBuffer("This is a test.");
+        	sb6.replace(5, 7, "was");
+        	System.out.println(sb6);					//This was a test.
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
